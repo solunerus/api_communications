@@ -7,27 +7,25 @@ import 'package:api_communications/src/error/app_exceptions.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
+/// The class [ApiCommunications] is a utility class that provides a method to
+/// get a response from an API call. The method getResponse takes in various
+/// parameters such as the [path], [HTTP method], [headers], [data to send],
+/// and [progress callbacks]. The method then uses the provided data to make a
+/// request using the [Dio library]. Before making the request, it logs the
+/// headers, path, and data to send. The response is then returned in a Future
+/// and processed in a separate isolate using the compute function.
+/// The response is returned after checking for any errors and logging any
+/// errors that occur.
 class ApiCommunications {
-  /// This function called `apiResponse` that sends a request using the `Dio`
-  /// library based on the provided `DioActionData` instance.
+  /// The method [_apiResponse] is a private method that is used to make the
+  /// API call. It takes in a [DioActionData] object as a parameter. The
+  /// [DioActionData] object contains the [Dio] instance, the [base URL], the
+  /// [app name], the [RFC], the [path], the [HTTP method], the [headers], the
+  /// [data to send], the [progress callbacks], and the [debug label].
   ///
-  /// The function first logs the [headers], [path], and [dataToSend] for debugging
-  /// purposes. It then creates an instance of the `Options` class with the headers
-  /// and HTTP method from the `DioActionData` instance.
-  ///
-  /// The function then checks if the HTTP method is POST and sends a POST
-  /// request using the `dio.post` method if it is, or sends a request using
-  /// the `dio.request` method if it is not. Both of these methods accept the [path],
-  /// [options], [onSendProgress], and [onReceiveProgress] arguments from the
-  /// `DioActionData` instance.
-  ///
-  /// If an error occurs while sending the request, it is logged and an instance
-  /// of the `AppExceptions` class is thrown. The `AppExceptions.fromError` method
-  /// converts the error into an instance of the `AppExceptions` class.
-  ///
-  /// The function returns a Future that will resolve with the `Response` object
-  /// from the `Dio` library when the request is successful, or throw an exception
-  /// if there is an error.
+  /// The method then uses the provided data to make a request using the [Dio]
+  /// library. Before making the request, it logs the headers, path, and data
+  /// to send.
   static Future<Response> _apiResponse(DioActionData dioActionData) async {
     try {
       log('Check Headers: ${dioActionData.headers}');
@@ -65,6 +63,14 @@ class ApiCommunications {
     }
   }
 
+  /// The method [getResponse] is a public method that is used to make the
+  /// API call. It takes in various parameters such as the [path], [HTTP method],
+  /// [headers], [data to send], and [progress callbacks]. The method then uses
+  /// the provided data to make a request using the [Dio library]. Before making
+  /// the request, it logs the headers, path, and data to send. The response is
+  /// then returned in a Future and processed in a separate isolate using the
+  /// compute function. The response is returned after checking for any errors
+  /// and logging any errors that occur.
   static Future<Response> getResponse({
     required String path,
     required HttpMethod method,
@@ -74,7 +80,10 @@ class ApiCommunications {
     ProgressCallback? onReceiveProgress,
     String? debugLabel,
   }) async {
+    /// [dataConnection] is the sinleton of the [DataConnection] class.
     final dataConnection = SingleDataConnection.dataConnection;
+
+    /// Isoolate
     return await compute<DioActionData, Response>(
       _apiResponse,
       DioActionData(
