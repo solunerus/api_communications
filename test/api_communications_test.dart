@@ -1,27 +1,16 @@
 import 'package:api_communications/api_communications.dart';
+import 'package:api_communications/src/organisms/environment.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-// void main() {
-//   group('A group of tests', () {
-//     final awesome = Awesome();
-
-//     setUp(() {
-//       // Additional setup goes here.
-//     });
-
-//     test('First Test', () {
-//       expect(awesome.isAwesome, isTrue);
-//     });
-//   });
-// }
-
-void main() {
-  // late final String token;
+void main() async {
+  final organism = await Environment.getOrganisms(Organisms.NERUS_VALLES);
+  final api = organism.urlApi;
+  final rfc = organism.rfc;
 
   SingleDataConnection.dataConnection = DataConnection(
     appName: 'TestApp',
-    urlApi: 'http://arquoscrm.sytes.net:4401/api',
-    rfc: 'OOM980122HN0',
+    urlApi: api,
+    rfc: rfc,
   );
 
   group('Check Test Package', () {
