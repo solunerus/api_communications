@@ -1,39 +1,39 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Api Communications
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+Paquete creado para lograr una buena comunicación con el API de Soluciones Nerus
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+## Descripción
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Este paquete trata de facilitar y estandarizar el consumo del API de Soluciones Nerus.
 
-## Features
+Se dan herramientas como los metodos http usados (GET y POST), los tipos de error que pueden surgir en el transcurso el tiempo actual de a aplicación en formato Europeo y un singleton que estará vivo durante el ciclo de vida de la aplicación
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+También se incluyen los enviroments, que son las variables que puede tener un organismo, el archivo .env no se incluye en el proyecto.
 
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
+## Cómo empezar
+Lo primero al comenzar la aplicación es obtener los datos del organismo, en el archivo main.dart se espera que se realice lo siguiente:
 ```dart
-const like = 'sample';
+void main() async{
+final organism = await Environment.getOrganisms(Organisms.NERUS_VALLES);
+...
+}
 ```
 
-## Additional information
+Después se inicia el Singleton de la siguiente manera:
+```dart
+void main() async{
+final organism = await Environment.getOrganisms(Organisms.NERUS_VALLES);
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+SingleDataConnection.dataConnection = DataConnection(
+    appName: 'TestApp',
+    urlApi: organism.urlApi,
+    rfc: organism.rfc,
+  );
+  
+  ...
+
+  runApp(const MyApp());
+}
+```
+
+Si los datos del organismo son dinamicos para la aplicación, se pueden reemplazar.
