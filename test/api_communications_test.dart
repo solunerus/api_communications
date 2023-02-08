@@ -1,4 +1,5 @@
 import 'package:api_communications/api_communications.dart';
+import 'package:api_communications/src/organisms/environment.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() async {

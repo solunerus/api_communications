@@ -9,7 +9,7 @@ export 'src/singleton/single_data_connection.dart';
 export 'src/enums/http_method.dart';
 export 'src/error/app_exceptions.dart';
 export 'src/models/data_connection.dart';
-export 'src/organisms/environment.dart';
+// export 'src/organisms/environment.dart';
 export 'src/helpers/app_time.dart';
 
 export 'package:dio/dio.dart';
