@@ -1,7 +1,7 @@
 name: api_communications
 description: Una forma facil de consumir un API de Soluciones Nerus.
 
-version: 1.0.0
+version: 1.0.1
 repository: https://github.com/solunerus/api_communications.git
 
 environment:
@@ -11,7 +11,7 @@ dependencies:
   flutter:
       sdk: flutter
   dio: ^4.0.6
-  flutter_dotenv: ^5.0.2
+  # flutter_dotenv: ^5.0.2
 
 dev_dependencies:
   flutter_test:
@@ -21,5 +21,5 @@ dev_dependencies:
   flutter_lints: ^2.0.1
 
 flutter:
-  assets:
-    - /Users/developer/developer/code/flutter/environment/.env
+  # assets:
+  #   - /Users/developer/developer/code/flutter/environment/.env

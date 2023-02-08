@@ -8,12 +8,15 @@ Este paquete trata de facilitar y estandarizar el consumo del API de Soluciones 
 
 Se dan herramientas como los metodos http usados (GET y POST), los tipos de error que pueden surgir en el transcurso el tiempo actual de a aplicación en formato Europeo y un singleton que estará vivo durante el ciclo de vida de la aplicación
 
-También se incluyen los enviroments, que son las variables que puede tener un organismo, el archivo .env no se incluye en el proyecto.
+~~También se incluyen los enviroments, que son las variables que puede tener un organismo, el archivo .env no se incluye en el proyecto.~~
 
 ## Cómo empezar
 Lo primero al comenzar la aplicación es obtener los datos del organismo, en el archivo main.dart se espera que se realice lo siguiente:
 ```dart
 void main() async{
+  /// Esta Herramienta ya no se encuentra en este paquete, se agregará 
+  /// manualmente (carpeta environment) junto con el paquete 
+  // `flutter_dotenv` o `flutter_config` para trabajar con archivos [.env]
 final organism = await Environment.getOrganisms(Organisms.NERUS_VALLES);
 ...
 }

@@ -1,11 +1,10 @@
 import 'package:api_communications/api_communications.dart';
-import 'package:api_communications/src/organisms/environment.dart';
+// import 'package:api_communications/src/environment/environment.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() async {
-  final organism = await Environment.getOrganisms(Organisms.NERUS_VALLES);
-  final api = organism.urlApi;
-  final rfc = organism.rfc;
+  final api = 'http://arquoscrm.sytes.net:4401/api';
+  final rfc = 'OOM980122HN0';
 
   SingleDataConnection.dataConnection = DataConnection(
     appName: 'TestApp',
