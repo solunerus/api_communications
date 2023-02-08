@@ -6,4 +6,10 @@ enum HttpMethod {
 
   /// The HTTP POST method is used to submit an entity to the specified resource
   POST,
+
+  PUT,
+
+  PATCH,
+
+  DELETE,
 }

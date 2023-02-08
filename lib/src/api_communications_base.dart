@@ -43,20 +43,45 @@ class ApiCommunications {
       );
 
       ///Response
-      return dioActionData.httpMethod == HttpMethod.POST
-          ? await dioActionData.dio.post(
-              dioActionData.path,
-              data: dioActionData.dataToSend,
-              options: options,
-              onSendProgress: dioActionData.onSendProgress,
-              onReceiveProgress: dioActionData.onReceiveProgress,
-            )
-          : await dioActionData.dio.request(
-              dioActionData.path,
-              options: options,
-              onSendProgress: dioActionData.onSendProgress,
-              onReceiveProgress: dioActionData.onReceiveProgress,
-            );
+      switch (dioActionData.httpMethod) {
+        case HttpMethod.GET:
+          return await dioActionData.dio.request(
+            dioActionData.path,
+            options: options,
+            onSendProgress: dioActionData.onSendProgress,
+            onReceiveProgress: dioActionData.onReceiveProgress,
+          );
+        case HttpMethod.POST:
+          return await dioActionData.dio.post(
+            dioActionData.path,
+            data: dioActionData.dataToSend,
+            options: options,
+            onSendProgress: dioActionData.onSendProgress,
+            onReceiveProgress: dioActionData.onReceiveProgress,
+          );
+        case HttpMethod.PUT:
+          return await dioActionData.dio.put(
+            dioActionData.path,
+            data: dioActionData.dataToSend,
+            options: options,
+            onSendProgress: dioActionData.onSendProgress,
+            onReceiveProgress: dioActionData.onReceiveProgress,
+          );
+        case HttpMethod.PATCH:
+          return await dioActionData.dio.patch(
+            dioActionData.path,
+            data: dioActionData.dataToSend,
+            options: options,
+            onSendProgress: dioActionData.onSendProgress,
+            onReceiveProgress: dioActionData.onReceiveProgress,
+          );
+        case HttpMethod.DELETE:
+          return await dioActionData.dio.delete(
+            dioActionData.path,
+            data: dioActionData.dataToSend,
+            options: options,
+          );
+      }
     } catch (e, s) {
       log('$e <==> $s');
       throw AppExceptions.fromError(e);
