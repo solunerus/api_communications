@@ -125,16 +125,15 @@ class AppExceptions implements Exception {
             /// If the data is a `Map`, then the prefix is the value of the
             /// `message` key.
             : dioData is Map
-                ? dioData['data']['message']
+                ? dioData['data']["status_message"] ?? dioData["status_message"]
 
                 /// If the data is not a `String` or a `Map`, then the prefix
                 /// is the status message.
-                : dioData['data']["status_message"] ??
-                    dioData["status_message"] ??
+                :
 
-                    /// If the `status_message` key does not exist, then the prefix
-                    /// is the error.
-                    dioError.error.toString();
+                /// If the `status_message` key does not exist, then the prefix
+                /// is the error.
+                dioError.error.toString();
 
         /// [apiStatusCode] is the status code of the response.
         final apiStatusCode =
