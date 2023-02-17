@@ -48,32 +48,24 @@ class ApiCommunications {
           return await dioActionData.dio.request(
             dioActionData.path,
             options: options,
-            onSendProgress: dioActionData.onSendProgress,
-            onReceiveProgress: dioActionData.onReceiveProgress,
           );
         case HttpMethod.POST:
           return await dioActionData.dio.post(
             dioActionData.path,
             data: dioActionData.dataToSend,
             options: options,
-            onSendProgress: dioActionData.onSendProgress,
-            onReceiveProgress: dioActionData.onReceiveProgress,
           );
         case HttpMethod.PUT:
           return await dioActionData.dio.put(
             dioActionData.path,
             data: dioActionData.dataToSend,
             options: options,
-            onSendProgress: dioActionData.onSendProgress,
-            onReceiveProgress: dioActionData.onReceiveProgress,
           );
         case HttpMethod.PATCH:
           return await dioActionData.dio.patch(
             dioActionData.path,
             data: dioActionData.dataToSend,
             options: options,
-            onSendProgress: dioActionData.onSendProgress,
-            onReceiveProgress: dioActionData.onReceiveProgress,
           );
         case HttpMethod.DELETE:
           return await dioActionData.dio.delete(
@@ -101,8 +93,6 @@ class ApiCommunications {
     required HttpMethod method,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? dataToSend,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
     String? debugLabel,
   }) async {
     /// [dataConnection] is the sinleton of the [DataConnection] class.
@@ -112,17 +102,14 @@ class ApiCommunications {
     return await compute<DioActionData, Response>(
       _apiResponse,
       DioActionData(
-        dio: SingleDataConnection.dio,
-        appName: dataConnection.appName,
-        baseUrl: dataConnection.urlApi,
-        rfc: dataConnection.rfc,
-        path: path,
-        httpMethod: method,
-        headers: headers,
-        dataToSend: dataToSend,
-        onSendProgress: onSendProgress,
-        onReceiveProgress: onReceiveProgress,
-      ),
+          dio: SingleDataConnection.dio,
+          appName: dataConnection.appName,
+          baseUrl: dataConnection.urlApi,
+          rfc: dataConnection.rfc,
+          path: path,
+          httpMethod: method,
+          headers: headers,
+          dataToSend: dataToSend),
       debugLabel: debugLabel,
     );
   }

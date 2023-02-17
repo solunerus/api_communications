@@ -29,14 +29,6 @@ class DioActionData {
   /// optional and can be null.
   final Map<String, dynamic>? dataToSend;
 
-  /// `onSendProgress` a callback function that will be called with progress
-  /// updates when sending the request. This is optional and can be null.
-  final ProgressCallback? onSendProgress;
-
-  /// `onReceiveProgress` a callback function that will be called with progress
-  /// updates when receiving the response. This is optional and can be null.
-  final ProgressCallback? onReceiveProgress;
-
   final String baseUrl;
 
   final String rfc;
@@ -52,7 +44,5 @@ class DioActionData {
     required this.appName,
     this.headers,
     this.dataToSend,
-    this.onSendProgress,
-    this.onReceiveProgress,
   });
 }
