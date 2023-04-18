@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:api_communications/src/models/dio_action_data.dart';
-import 'package:api_communications/src/singleton/single_data_connection.dart';
-import 'package:api_communications/src/enums/http_method.dart';
-import 'package:api_communications/src/error/app_exceptions.dart';
+import 'package:api_communications/src/core/models/dio_action_data.dart';
+import 'package:api_communications/src/core/singleton/single_data_connection.dart';
+import 'package:api_communications/src/core/enums/http_method.dart';
+import 'package:api_communications/src/core/error/app_exceptions.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
@@ -28,9 +28,7 @@ class ApiCommunications {
   /// to send.
   static Future<Response> _apiResponse(DioActionData dioActionData) async {
     try {
-      log('Check Headers: ${dioActionData.headers}');
-      log('Check Path: ${dioActionData.path}');
-      log('Check dataToSend: ${dioActionData.dataToSend}');
+      _checkDataConnection(dioActionData);
 
       ///Options
       final options = Options(
@@ -112,5 +110,15 @@ class ApiCommunications {
           dataToSend: dataToSend),
       debugLabel: debugLabel,
     );
+  }
+
+  static void _checkDataConnection(DioActionData data) {
+    const name = "ApiCommunications";
+    log('Check appName: ${data.appName}', name: name);
+    log('Check baseUrl: ${data.baseUrl}', name: name);
+    log('Check Path: ${data.path}', name: name);
+    log('Check Headers: ${data.headers}', name: name);
+    log('Check rfc: ${data.rfc}', name: name);
+    log('Check dataToSend: ${data.dataToSend}', name: name);
   }
 }
