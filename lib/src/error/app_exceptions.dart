@@ -78,9 +78,9 @@ class AppExceptions implements Exception {
     /// [DioErrorType] is an enum that represents the type of error that
     /// occurred.
     switch (dioError.type) {
-      /// [DioErrorType.connectTimeout] is an error that occurs when the
+      /// [DioErrorType.connectionTimeout] is an error that occurs when the
       /// connection times out.
-      case DioErrorType.connectTimeout:
+      case DioErrorType.connectionTimeout:
         return AppExceptions(
           code: "701",
           prefijo: "Connection timeout with API server",
@@ -106,9 +106,9 @@ class AppExceptions implements Exception {
             fechaInsert: AppTime.dateTimeNow(),
             descripcion: dioError.toString());
 
-      /// [DioErrorType.response] is an error that occurs when the
+      /// [DioErrorType.badResponse] is an error that occurs when the
       /// response is not successful.
-      case DioErrorType.response:
+      case DioErrorType.badResponse:
 
         /// [dioStatusCode] is the status code of the response.
         final dioStatusCode = dioError.response!.statusCode;
@@ -205,9 +205,9 @@ class AppExceptions implements Exception {
             fechaInsert: AppTime.dateTimeNow(),
             descripcion: dioError.toString());
 
-      /// [DioErrorType.other] is an error that occurs when the
+      /// [DioErrorType.unknown] is an error that occurs when the
       /// request is not successful.
-      case DioErrorType.other:
+      case DioErrorType.unknown:
         return AppExceptions(
             code: "706",
             prefijo:

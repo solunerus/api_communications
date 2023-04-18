@@ -41,8 +41,8 @@ abstract class SingleDataConnection {
         BaseOptions(
             baseUrl: urlApi,
             // receiveDataWhenStatusError: true,
-            connectTimeout: 120 * 1000, // 60 seconds
-            receiveTimeout: 120 * 1000 // 60 seconds
+            connectTimeout: Duration(minutes: 1), // 60 seconds
+            receiveTimeout: Duration(minutes: 1) // 60 seconds
             ),
       );
 }
