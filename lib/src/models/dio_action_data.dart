@@ -1,4 +1,4 @@
-import 'package:api_communications/src/core/enums/http_method.dart';
+import 'package:api_communications/src/enums/http_method.dart';
 import 'package:dio/dio.dart';
 
 /// The class [DioActionData] is a class used to make requests over HTTP with

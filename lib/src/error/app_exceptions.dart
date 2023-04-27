@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:api_communications/src/core/helpers/app_time.dart';
+import 'package:api_communications/src/helpers/app_time.dart';
 import 'package:dio/dio.dart';
 
 class AppExceptions implements Exception {

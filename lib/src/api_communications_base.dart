@@ -1,9 +1,9 @@
 import 'dart:developer';
 
-import 'package:api_communications/src/core/models/dio_action_data.dart';
-import 'package:api_communications/src/core/singleton/single_data_connection.dart';
-import 'package:api_communications/src/core/enums/http_method.dart';
-import 'package:api_communications/src/core/error/app_exceptions.dart';
+import 'package:api_communications/src/models/dio_action_data.dart';
+import 'package:api_communications/src/singleton/single_data_connection.dart';
+import 'package:api_communications/src/enums/http_method.dart';
+import 'package:api_communications/src/error/app_exceptions.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
