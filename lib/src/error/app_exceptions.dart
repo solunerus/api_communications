@@ -59,9 +59,9 @@ class AppExceptions implements Exception {
   factory AppExceptions.fromError(dynamic error) {
     log('AppExceptions: $error');
 
-    /// [DioError] is a class that represents an error that occurs while
+    /// [DioException] is a class that represents an error that occurs while
     /// sending or receiving a request.
-    if (error is DioError) return AppExceptions.fromDioError(error);
+    if (error is DioException) return AppExceptions.fromDioException(error);
 
     /// Return an instance of the `AppExceptions` class with the data
     /// Unmanaged error.
@@ -73,48 +73,48 @@ class AppExceptions implements Exception {
     );
   }
 
-  /// [fromDioError] is a factory constructor that returns an instance of the
-  factory AppExceptions.fromDioError(DioError dioError) {
-    /// [DioErrorType] is an enum that represents the type of error that
+  /// [fromDioException] is a factory constructor that returns an instance of the
+  factory AppExceptions.fromDioException(DioException dioException) {
+    /// [DioExceptionType] is an enum that represents the type of error that
     /// occurred.
-    switch (dioError.type) {
-      /// [DioErrorType.connectionTimeout] is an error that occurs when the
+    switch (dioException.type) {
+      /// [DioExceptionType.connectionTimeout] is an error that occurs when the
       /// connection times out.
-      case DioErrorType.connectionTimeout:
+      case DioExceptionType.connectionTimeout:
         return AppExceptions(
           code: "701",
           prefijo: "Connection timeout with API server",
           fechaInsert: AppTime.dateTimeNow(),
-          descripcion: dioError.toString(),
+          descripcion: dioException.toString(),
         );
 
-      /// [DioErrorType.sendTimeout] is an error that occurs when the
+      /// [DioExceptionType.sendTimeout] is an error that occurs when the
       /// sending times out.
-      case DioErrorType.sendTimeout:
+      case DioExceptionType.sendTimeout:
         return AppExceptions(
             code: "702",
             prefijo: "Send timeout in connection with API server",
             fechaInsert: AppTime.dateTimeNow(),
-            descripcion: dioError.toString());
+            descripcion: dioException.toString());
 
-      /// [DioErrorType.receiveTimeout] is an error that occurs when the
+      /// [DioExceptionType.receiveTimeout] is an error that occurs when the
       /// receiving times out.
-      case DioErrorType.receiveTimeout:
+      case DioExceptionType.receiveTimeout:
         return AppExceptions(
             code: "703",
             prefijo: "Receive timeout in connection with API server",
             fechaInsert: AppTime.dateTimeNow(),
-            descripcion: dioError.toString());
+            descripcion: dioException.toString());
 
-      /// [DioErrorType.badResponse] is an error that occurs when the
+      /// [DioExceptionType.badResponse] is an error that occurs when the
       /// response is not successful.
-      case DioErrorType.badResponse:
+      case DioExceptionType.badResponse:
 
         /// [dioStatusCode] is the status code of the response.
-        final dioStatusCode = dioError.response!.statusCode;
+        final dioStatusCode = dioException.response!.statusCode;
 
         /// [dioData] is the data of the response.
-        final dioData = dioError.response?.data;
+        final dioData = dioException.response?.data;
 
         /// [prefijo] is the prefix of the error.
         final prefijo = dioData is String
@@ -133,7 +133,7 @@ class AppExceptions implements Exception {
 
                 /// If the `status_message` key does not exist, then the prefix
                 /// is the error.
-                dioError.error.toString();
+                dioException.error.toString();
 
         /// [apiStatusCode] is the status code of the response.
         final apiStatusCode =
@@ -157,7 +157,7 @@ class AppExceptions implements Exception {
                 code: apiStatusCode.toString(),
                 prefijo: prefijo ?? "Bad request",
                 fechaInsert: AppTime.dateTimeNow(),
-                descripcion: dioError.error.toString());
+                descripcion: dioException.error.toString());
 
           /// [401] is the status code of the response when the request is
           /// unauthorized.
@@ -166,7 +166,7 @@ class AppExceptions implements Exception {
                 code: apiStatusCode.toString(),
                 prefijo: prefijo ?? "Unauthorized",
                 fechaInsert: AppTime.dateTimeNow(),
-                descripcion: dioError.error.toString());
+                descripcion: dioException.error.toString());
 
           /// [404] is the status code of the response when the request is
           /// not found.
@@ -175,7 +175,7 @@ class AppExceptions implements Exception {
                 code: apiStatusCode.toString(),
                 prefijo: prefijo ?? "Not found",
                 fechaInsert: AppTime.dateTimeNow(),
-                descripcion: dioError.error.toString());
+                descripcion: dioException.error.toString());
 
           /// [500] is the status code of the response when the request is
           /// internal server error.
@@ -184,7 +184,7 @@ class AppExceptions implements Exception {
                 code: apiStatusCode.toString(),
                 prefijo: prefijo ?? "Internal server error",
                 fechaInsert: AppTime.dateTimeNow(),
-                descripcion: dioError.error.toString());
+                descripcion: dioException.error.toString());
 
           /// `default` is the status code of the response when the request is
           /// unknown.
@@ -193,27 +193,27 @@ class AppExceptions implements Exception {
                 code: apiStatusCode.toString(),
                 prefijo: prefijo ?? "Something went wrong",
                 fechaInsert: AppTime.dateTimeNow(),
-                descripcion: dioError.error.toString());
+                descripcion: dioException.error.toString());
         }
 
-      /// [DioErrorType.cancel] is an error that occurs when the
+      /// [DioExceptionType.cancel] is an error that occurs when the
       /// request is cancelled.
-      case DioErrorType.cancel:
+      case DioExceptionType.cancel:
         return AppExceptions(
             code: "705",
             prefijo: "Request to API server was cancelled",
             fechaInsert: AppTime.dateTimeNow(),
-            descripcion: dioError.toString());
+            descripcion: dioException.toString());
 
-      /// [DioErrorType.unknown] is an error that occurs when the
+      /// [DioExceptionType.unknown] is an error that occurs when the
       /// request is not successful.
-      case DioErrorType.unknown:
+      case DioExceptionType.unknown:
         return AppExceptions(
             code: "706",
             prefijo:
                 "Connection to API server failed due to internet connection",
             fechaInsert: AppTime.dateTimeNow(),
-            descripcion: dioError.error.toString());
+            descripcion: dioException.error.toString());
 
       /// `default` is the status code of the response when the request is
       /// unknown.
@@ -222,7 +222,7 @@ class AppExceptions implements Exception {
             code: "707",
             prefijo: "Something went wrong",
             fechaInsert: AppTime.dateTimeNow(),
-            descripcion: dioError.toString());
+            descripcion: dioException.toString());
     }
   }
 

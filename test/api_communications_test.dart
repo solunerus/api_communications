@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() async {
   final api = 'http://arquoscrm.sytes.net:4401/api';
-  final rfc = 'OOM980122HN0';
+  final rfc = 'SIA930831P15';
 
   SingleDataConnection.dataConnection = DataConnection(
     appName: 'TestApp',
